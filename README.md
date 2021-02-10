@@ -1,6 +1,6 @@
 # pdrepr
 
-pdrepr takes a pandas DataFrame as input, and *attempts* to output a string that, when passed to Python's builtin `eval()`, will reproduce the original DataFrame.
+pdrepr takes a pandas DataFrame as input, and *attempts* to output a string that, when passed to Python's built-in `eval()`, will reproduce the original DataFrame.
 
 ![Testing and linting](https://github.com/danhje/pdrepr/workflows/Test%20And%20Lint/badge.svg)
 [![codecov](https://codecov.io/gh/danhje/pdrepr/branch/master/graph/badge.svg)](https://codecov.io/gh/danhje/pdrepr)
@@ -17,17 +17,17 @@ I was tired of having to manually construct DataFrames to be used in testing, es
 Using poetry:
 
 ```shell
-poetry add pymesis
+poetry add pdrepr
 ```
 
 Using pipenv:
 
 ```shell
-pipenv install pymesis
+pipenv install pdrepr
 ```
 
 Using pip:
 
 ```shell
-pip install pymesis
+pip install pdrepr
 ```
