@@ -1,8 +1,10 @@
 import pytest
 from pdrepr import pdrepr
+import datetime
 import pandas as pd
 import numpy as np
 from contextlib import contextmanager
+import mock
 
 
 @contextmanager
@@ -35,6 +37,32 @@ def test_pdrepr_floats():
     pd.testing.assert_frame_equal(original, recreated)
 
 
+@pytest.mark.xfail
+def test_pdrepr_datetimes():
+    first_date = datetime.datetime.now()
+    date_range = [first_date + datetime.timedelta(days=5-d) for d in range(5)]
+    original = pd.DataFrame({"col1": date_range, "col2": date_range})
+    string_representation = pdrepr(original)
+    recreated = eval(string_representation)
+    pd.testing.assert_frame_equal(original, recreated)
+
+
+def test_pdrepr_other():
+    class MyClass:
+        def __init__(self, attr):
+            self._attr = attr
+        def __repr__(self):
+            return f"MyClass({self._attr})"
+        def __eq__(self, other):
+            return repr(self) == repr(other)
+    objects = [MyClass(d) for d in range(5)]
+    original = pd.DataFrame({"col1": objects, "col2": objects})
+    string_representation = pdrepr(original)
+    recreated = eval(string_representation)
+    pd.testing.assert_frame_equal(original, recreated)
+
+
+@pytest.mark.xfail
 def test_pdrepr_nans():
     original = pd.DataFrame({"col1": [1, 2, pd.NA], "col2": [pd.NA, pd.NA, pd.NA]})
     string_representation = pdrepr(original)
@@ -65,6 +93,7 @@ def test_pdrepr_multiindex_columns():
     pd.testing.assert_frame_equal(original, recreated)
 
 
+@pytest.mark.xfail
 def test_pdrepr_atypical_import_alias():
     with rename_pd() as pand:
         with pytest.raises(NameError):  # "pd" is now not a valid alias for pandas, only "pand" is.
@@ -73,3 +102,4 @@ def test_pdrepr_atypical_import_alias():
         string_representation = pdrepr(original)
         recreated = eval(string_representation)
         pand.testing.assert_frame_equal(original, recreated)
+    pd.NA  # Verifies that the "pd" alias is restored
