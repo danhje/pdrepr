@@ -26,8 +26,8 @@ def pdrepr(df: pd.DataFrame) -> str:
 
     index_columns = df.index.names
     df = df.reset_index()
+    df = df.drop("index", axis=1, errors="ignore")
     d = df.to_dict(orient="list")
-    d.pop("index", None)
     string = f"{ALIAS}.DataFrame({repr(d)})"
     if sum([idx is not None for idx in index_columns]):
         string += f".set_index({index_columns})"
