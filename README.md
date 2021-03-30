@@ -34,3 +34,20 @@ Using pip:
 ```shell
 pip install pdrepr
 ```
+
+## Usage
+
+```python
+>>> from pdrepr import pdrepr
+
+>>> pdrepr(df)
+pd.DataFrame({'character': ['The Nude Organist', 'BBC continuity announcer', 'The Colonel'], 'played by': ['Terry Jones and Terry Gilliam', 'John Cleese', 'Graham Chapman']}).set_index(['character'])
+
+>>> pd.DataFrame({'character': ['The Nude Organist', 'BBC continuity announcer', 'The Colonel'], 'played by': ['Terry Jones and Terry Gilliam', 'John Cleese', 'Graham Chapman']}).set_index(['character'])
+                                              played by
+character                                              
+The Nude Organist         Terry Jones and Terry Gilliam
+BBC continuity announcer                    John Cleese
+The Colonel                              Graham Chapman
+
+```
