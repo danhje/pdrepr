@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pdrepr"
-version = "0.1.1"
+version = "0.2.0"
 description = "eval-able string representation of pandas objects"
 readme = "README.md"
 repository = "https://github.com/danhje/pdrepr"
@@ -12,10 +12,6 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
     "Topic :: Software Development :: Libraries",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Scientific/Engineering",
@@ -25,13 +21,13 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.8"
-pandas = "^1.2.2"
+python = ">=3.8, <=3.10"
+pandas = "*"
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.2.2"
-numpy = "^1.20.1"
-mock = "^4.0.3"
+pytest = "*"
+numpy = "*"
+mock = "*"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
