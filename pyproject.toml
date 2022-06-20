@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pdrepr"
-version = "0.2.0"
+version = "0.2.1"
 description = "eval-able string representation of pandas objects"
 readme = "README.md"
 repository = "https://github.com/danhje/pdrepr"
